@@ -1,13 +1,31 @@
-# 3. faza: Vizualizacija podatkov
+library(ggplot2)
+library(ggvis)
+library(dplyr)
+library(rgdal)
+library(mosaic)
+library(maptools)
+library(ggmap)
+library(mapproj)
+library(munsell)
 
-# Uvozimo zemljevid.
-zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip", "OB",
-                             pot.zemljevida="OB", encoding="Windows-1250")
-levels(zemljevid$OB_UIME) <- levels(zemljevid$OB_UIME) %>%
-  { gsub("Slovenskih", "Slov.", .) } %>% { gsub("-", " - ", .) }
-zemljevid$OB_UIME <- factor(zemljevid$OB_UIME, levels=levels(obcine$obcina))
-zemljevid <- fortify(zemljevid)
+# Uvozimo zemljevid Sveta
+# source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
+source("lib/uvozi.zemljevid.r") #Nastavi pravo datoteko
 
-# Izračunamo povprečno velikost družine
-povprecja <- druzine %>% group_by(obcina) %>%
-  summarise(povprecje=sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
+svet <- uvozi.zemljevid("https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+                        "ne_50m_admin_0_countries") %>% fortify()
+
+
+# Zemljevid sveta skrčimo na zemljevid Evrope
+europe <- filter(svet, CONTINENT == "Europe")
+europe <- filter(europe, long < 55 & long > -35 & lat > 30 & lat < 85)
+
+europe <- filter(europe, NAME != "Jersey")
+europe <- filter(europe, NAME != "Russia")
+
+# Drzave v zemljevidu Evrope
+drzave <- unique(europe$NAME) 
+drzave <- as.data.frame(drzave, stringsAsFactors=FALSE) 
+names(drzave) <- "Drzava"
+
+
