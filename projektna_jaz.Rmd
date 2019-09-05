@@ -1,13 +1,14 @@
 ---
-title: "Zaposlenost mladih v Evropi"
+title: "Zaposlenost mladih v EU"
 author: "Urban Čretnik"
+date: "05 september 2019"
 output:
   html_document: default
   pdf_document:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-runtime: shiny
+
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -17,32 +18,24 @@ runtime: shiny
 
 # Uvoz vseh potrebnih knjižnic
 source("lib/libraries.r", encoding="UTF-8")
+
 Sys.setlocale('LC_ALL','Slovenian')
 
 ```
 
-![](https://s25009.pcdn.co/blog/wp-content/uploads/2019/07/how_to_engage_the_younger_workforce_for_manufacturing_companies.jpg)
+![](slike/slikica.jpg)
+vir:syspro.com
+
+
 
 ```{r rstudio, echo=FALSE, results='asis'}
 # Izris povezave do RStudia na Binderju
 source("lib/rstudio.r", encoding="UTF-8")
 ```
 
-# Izbira teme
+# Izbira teme in uvod
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
-
-![](slike/slikica.jpg)
-
-vir:syspro.com
-
-
-```{r rstudio, echo=FALSE, results='asis'}
-source('lib/rstudio.r', encoding = 'UTF-8')
-
-```
-
-# Uvod
+napisem kaj delam
 Napišem uvod
 
 ***
@@ -53,7 +46,7 @@ Napišem uvod
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
-Tu doli napišem od kje so podatki in kak sem delal
+Tu doli napišem od kje so podatki in kak sem delal pa kake so tabele
 
 Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
 z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
@@ -87,12 +80,17 @@ Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
-
 ```{r graf_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi grafeki', fig.height=8}
 graf_zaposlenost
 ```
 Komentiraj grafe
+
+
+```{r zemljevid_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi grafeki', fig.height=10 }
+zemljevid_zaposlenost
+```
+
+
 
 ***
 
@@ -102,13 +100,18 @@ Komentiraj grafe
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
+
+```{r zemljevid_clustra, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Cluster', fig.height=10}
+zemljevid_cluster
+```
+
+
+
+Spodnji graf komwntiraj regresijo
 
 ```{r graf_regresija, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=12}
 graf_regresija
-
 ```
 
 ***
-
 

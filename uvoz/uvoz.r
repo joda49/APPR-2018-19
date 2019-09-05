@@ -1,7 +1,6 @@
-library(dplyr)
-library(readr)
-library(tidyr)
-library(reshape2)
+source('lib/libraries.r', encoding = 'UTF-8')
+
+loc <- locale(encoding = 'UTF-8', decimal_mark = '.', grouping_mark = ',')
 
 #Tabela 1
 
@@ -28,3 +27,23 @@ zaposlenost_skupaj$Drzava <- gsub("^European.*", 'EU', zaposlenost_skupaj$Drzava
 #Tabela 3
 
 zaposlenost_vse <- rbind(zaposlenost, zaposlenost_skupaj)
+
+#Tabela 4
+
+zaposlenost_2018 <- filter(zaposlenost_skupaj, Drzava != 'EU')
+zaposlenost_2018 <- filter(zaposlenost_2018, Leto == '2018')
+zaposlenost_2018 <- zaposlenost_2018[,-3]
+zaposlenost_2018 <- zaposlenost_2018[,-1]
+
+#Tabela 5
+
+bdp <- read_csv('podatki/bdp.csv', col_names = c('Leto', 'Drzava', 'brisi', 'brisi1', 'bdppc'),
+                locale=loc, na = c(':', ''), skip = 1)
+
+
+bdp <- bdp[,-4]
+bdp <- bdp[,-3]
+bdp$Drzava <- gsub("^Germany.*", 'Germany', bdp$Drzava)
+bdp$Drzava <- gsub("^European.*", 'EU', bdp$Drzava)
+
+
