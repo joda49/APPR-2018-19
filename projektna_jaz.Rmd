@@ -38,6 +38,18 @@ source("lib/rstudio.r", encoding="UTF-8")
 napisem kaj delam
 Napišem uvod
 
+
+V projektu bom analiziral zaposlenost med mladimi v različnih državah EU.
+
+Skozi analize bom poskušal poiskati povezave med zaposlenstjo mladih in gospodarskim stanjem v le-teh. 
+
+Glavni cilj analize je dokazati, da zaposlenost mladih močno vpliva na godpodarsko stanje v državah.
+
+V svojem projektu bom naredil naslednje primerjave in analize:
+- primerjava med posameznimi državami glede na delež zaposlenosti med mladimi
+- primerjava med zaposlenstjo mlladih in spoloma
+- analiza vpliva zaposlenosti mladih na BDP
+
 ***
 
 
@@ -46,30 +58,31 @@ Napišem uvod
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
-Tu doli napišem od kje so podatki in kak sem delal pa kake so tabele
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uporabil bom podatke, ki sem jih pridobil na spletnih straneh Eurostata 
+Podatke za svoj projekt sem poiskal na spletnih straneh Eurostata in opisujejo obdobje od leta 2008 do 2018. Podatke sem najprej shranil kot CSV datoteke, nato pa jih uredil in jih zbral v več razpredelnicah v obliki *tidy data*.
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+Tabela 1(zaposlenost_mladi: Kolikšen delež mladih je zaposlenih):
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
+- `Leto` - spremenljivka: leto
+- `Drzava` - spremenljivka: ime države
+- `Spol` - spremenljivka:  spol
+- `Procent` - meritev: delež mladih zaposlenih
 
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
+Tabela 2(zaposlenost_skupaj: Kolikšen delež mladih zaposlenih(skupaj ne glede na spol)):
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
+- `Leto` - spremenljivka: leto
+- `Drzava` - spremenljivka: ime države
+- `Procent` - meritev: delež mladih zaposlenih
+
+Tabela 3(bdp: BDP v različnih državah EU):
+
+- `Leto` - spremenljivka: leto
+- `Drzava` - spremenljivka: ime države
+- `bdppc` - meritev: povprečni BDp po državah EU
+
+Ostale tabele sem sestavil, saj sem jih potreboval za vmesne korake
+
 
 
 ***
@@ -80,17 +93,20 @@ Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-```{r graf_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi grafeki', fig.height=8}
+```{r graf_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi posameznih držav', fig.height=7}
 graf_zaposlenost
 ```
-Komentiraj grafe
+
+Če pogledamo graf Slovenije in ga primerjamo z grafom EU, opazimo, daje bila Slovenija par let pod evropskim povprečjem. Zadnja leta pa spet dosegamo EU povprečje. ob ogledu grafov naših sosed ugotovimo, da je Hrvaški (graf) zelo podoben našemu. Medtem ko je zaposlenost mladih v Italiji in na Madžarskem močno pod povprečjem. Avstrija, ki velja za eno bolj razvitih držav EU in je sigurno najbolj gospodarsko stabilna med našimi sosedi, ima visoko zaposlenost med mladimi in je tudi krepko nad povprečjem. Če gremo še dalje proti severu opazimo, da imata velesili Nemčija in Britanija grafa podobne oblike. Skandinavske države, ki veljajo za najbogatejše v EU imajo najvišjo zaposlenost med mladimi v EU in so zelo visoko nad povprečjem. Če si ogledamo še grafe držav, ki so vzhodno in zahodno od nas. Opazimo, da imata Španija in Portugalska, prav tako tudi Bulgarija in Romunija nizko zaposlenost med mladimi in pod povprečjem. Zelo zanimivo je tudi, da v državah katerih je zaposlenost mladih zelo visoka (skandinavske, Nizozemska) je zaposlenih več žensk kot moških. V državah, kjer je zaposlenost mladih zelo nizka pa je zaposlenih občutno več moških.
 
 
-```{r zemljevid_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi grafeki', fig.height=10 }
+
+
+```{r zemljevid_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Zemljevid zaposlenosti mladih', fig.height=5 }
 zemljevid_zaposlenost
 ```
 
-
+Tudi na zemljevidu je lepo razvidno, kako se zaposlenost mladih povečuje od juga proti severu. Tako, da lahko sklepamo, da se z večanjem BDP-ja se veča tudi zaposlenost mladih.
 
 ***
 
@@ -101,17 +117,20 @@ source("analiza/analiza.r", encoding="UTF-8")
 ```
 
 
-```{r zemljevid_clustra, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Cluster', fig.height=10}
+
+```{r zemljevid_clustra, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='BDP držav EU', fig.height=5}
 zemljevid_cluster
 ```
 
+Na zgornjem zemljevidu sem z isto barvo obarval skupine držav, ki imajo podoben BDP. Kot lahko razberemo iz prejšnjega zemljevida lahko vidimo, da države, ki imajo podoben BDP imajo tudi podobne grafe zaposlenosti mladih.
 
 
-Spodnji graf komwntiraj regresijo
 
-```{r graf_regresija, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=12}
+```{r graf_regresija, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=5}
 graf_regresija
 ```
+
+Iz grafa je razvidno, da v zadnjih letih število zaposlitev med mladimi narašča. V prihodnje lahko pričakujemo, da bo zaposlenost mladih naraščala s podobno hitrostjo.
 
 ***
 
