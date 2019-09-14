@@ -132,5 +132,17 @@ graf_regresija
 
 Iz grafa je razvidno, da v zadnjih letih število zaposlitev med mladimi narašča. V prihodnje lahko pričakujemo, da bo zaposlenost mladih naraščala s podobno hitrostjo.
 
+
+```{r graf_regresija_zenske, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=5}
+graf_regresija_zenske
+
+```
+
+```{r graf_regresija_moski, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=5}
+graf_regresija_moski
+
+```
+
+
 ***
 

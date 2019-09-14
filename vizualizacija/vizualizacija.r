@@ -45,5 +45,6 @@ zemljevid_zaposlenost <- ggplot() + geom_polygon(data=left_join(europe, skupaj, 
 graf_zaposlenost <- ggplot(data = filter(zaposlenost_vse, Drzava == 'Slovenia' | Drzava == 'Switzerland' | Drzava == 'Austria' | Drzava == 'Croatia' | Drzava == 'Hungary' | Drzava == 'Germany' | Drzava == 'Netherlands' | Drzava == 'Norway'| Drzava == 'Iceland' | Drzava == 'Bulgaria' | Drzava == 'Romania' | Drzava == 'Portugal' | Drzava == 'Spain' | Drzava == 'EU' | Drzava == 'Italy' | Drzava == 'United Kingdom'),
                            mapping = aes(x=Leto, y=Procent, color=Spol, Group=Drzava)) +
   geom_line() +
-  facet_wrap(Drzava~., ncol = 4)
+  facet_wrap(Drzava~., ncol = 4) +
+  scale_x_continuous(breaks = seq(2010, 2018, 4))
 
