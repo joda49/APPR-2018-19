@@ -21,12 +21,13 @@ graf_regresija <- ggplot(zaposlenost_EU, aes(x=Leto, y=Procent)) +
 #Regresija zenske
 
 zaposlenost_zenske <- filter(zaposlenost_vse, Spol == 'Females')
+zaposlenost_zenske <- filter(zaposlenost_zenske, Drzava == 'EU')
 zaposlenost_zenske <- filter(zaposlenost_zenske, Leto != 2008, Leto != 2009, Leto != 2010, Leto != 2011, Leto != 2012)
 zaposlenost_zenske <- zaposlenost_zenske[,-3]
 
-prileganje1 <- lm(data = zaposlenost_zenske, Procent ~ Leto)
+prileganje <- lm(data = zaposlenost_zenske, Procent ~ Leto)
 
-l1 <- data.frame(Leto=seq(2019, 2022, 1))
+l <- data.frame(Leto=seq(2019, 2022, 1))
 napoved1 <- mutate(l1, Procent=predict(prileganje1, l1))
 
 graf_regresija_zenske <- ggplot(zaposlenost_zenske, aes(x=Leto, y=Procent)) +
@@ -38,17 +39,18 @@ graf_regresija_zenske <- ggplot(zaposlenost_zenske, aes(x=Leto, y=Procent)) +
 #Regresija moski
 
 zaposlenost_moski <- filter(zaposlenost_vse, Spol == 'Males')
+zaposlenost_moski <- filter(zaposlenost_moski, Drzava == 'EU')
 zaposlenost_moski <- filter(zaposlenost_moski, Leto != 2008, Leto != 2009, Leto != 2010, Leto != 2011, Leto != 2012)
 zaposlenost_moski <- zaposlenost_moski[,-3]
 
 prileganje2 <- lm(data = zaposlenost_moski, Procent ~ Leto)
 
-l2 <- data.frame(Leto=seq(2019, 2022, 1))
-napoved2 <- mutate(l2, Procent=predict(prileganje2, l))
+l <- data.frame(Leto=seq(2019, 2022, 1))
+napoved <- mutate(l2, Procent=predict(prileganje, l))
 
 graf_regresija_moski<- ggplot(zaposlenost_moski, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'green') +
-  geom_point(data=napoved2, aes(x=Leto, y=Procent), color = 'red', size=3) +
+  geom_point(data=napoved, aes(x=Leto, y=Procent), color = 'red', size=3) +
   geom_point() +
   scale_x_continuous(breaks = seq(2008, 2018, 2))
 
