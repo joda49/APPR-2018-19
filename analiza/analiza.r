@@ -43,7 +43,7 @@ zaposlenost_moski <- filter(zaposlenost_moski, Drzava == 'EU')
 zaposlenost_moski <- filter(zaposlenost_moski, Leto != 2008, Leto != 2009, Leto != 2010, Leto != 2011, Leto != 2012)
 zaposlenost_moski <- zaposlenost_moski[,-3]
 
-prileganje2 <- lm(data = zaposlenost_moski, Procent ~ Leto)
+prileganje <- lm(data = zaposlenost_moski, Procent ~ Leto)
 
 l <- data.frame(Leto=seq(2019, 2022, 1))
 napoved <- mutate(l2, Procent=predict(prileganje, l))
