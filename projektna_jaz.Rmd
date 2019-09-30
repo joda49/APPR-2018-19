@@ -35,8 +35,8 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme in uvod
 
-napisem kaj delam
-Napišem uvod
+
+
 
 
 V projektu bom analiziral zaposlenost med mladimi v različnih državah EU.
@@ -133,16 +133,16 @@ graf_regresija
 Iz grafa je razvidno, da v zadnjih letih število zaposlitev med mladimi narašča. V prihodnje lahko pričakujemo, da bo zaposlenost mladih naraščala s podobno hitrostjo.
 
 
-```{r graf_regresija_zenske, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=5}
+```{r graf_regresija_zenske, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija ženske', fig.height=5}
 graf_regresija_zenske
 
 ```
 
-```{r graf_regresija_moski, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija', fig.height=5}
+```{r graf_regresija_moski, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Regresija moški', fig.height=5}
 graf_regresija_moski
 
 ```
-
+Izrisal sem še regresijska grafa posebej za ženske in moške.Zanimalo me je kateri graf hitreje narašča, sa j bi lahko sklepali, da mogoče graf za ženske hitreje narašča. Vendar temu ni tako.
 
 ***
 
