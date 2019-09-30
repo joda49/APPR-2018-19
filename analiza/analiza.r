@@ -28,7 +28,7 @@ zaposlenost_zenske <- zaposlenost_zenske[,-3]
 prileganje <- lm(data = zaposlenost_zenske, Procent ~ Leto)
 
 l <- data.frame(Leto=seq(2019, 2022, 1))
-napoved1 <- mutate(l1, Procent=predict(prileganje1, l1))
+napoved1 <- mutate(l, Procent=predict(prileganje, l))
 
 graf_regresija_zenske <- ggplot(zaposlenost_zenske, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'red') +
@@ -46,7 +46,7 @@ zaposlenost_moski <- zaposlenost_moski[,-3]
 prileganje <- lm(data = zaposlenost_moski, Procent ~ Leto)
 
 l <- data.frame(Leto=seq(2019, 2022, 1))
-napoved <- mutate(l2, Procent=predict(prileganje, l))
+napoved <- mutate(l, Procent=predict(prileganje, l))
 
 graf_regresija_moski<- ggplot(zaposlenost_moski, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'green') +
