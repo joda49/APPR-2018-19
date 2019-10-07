@@ -28,7 +28,7 @@ vir:syspro.com
 
 
 
-```{r rstudio, echo=FALSE, results='asis'}
+```{r rstudio, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 # Izris povezave do RStudia na Binderju
 source("lib/rstudio.r", encoding="UTF-8")
 ```
@@ -55,7 +55,7 @@ V svojem projektu bom naredil naslednje primerjave in analize:
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE, message=FALSE}
+```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
@@ -93,7 +93,7 @@ Ostale tabele sem sestavil, saj sem jih potreboval za vmesne korake
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-```{r graf_zaposlenost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi posameznih držav', fig.height=7}
+```{r graf_zaposlenost, echo=FALSE, warinng=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi posameznih držav', fig.height=7}
 graf_zaposlenost
 ```
 
@@ -142,7 +142,7 @@ graf_regresija_zenske
 graf_regresija_moski
 
 ```
-Izrisal sem še regresijska grafa posebej za ženske in moške.Zanimalo me je kateri graf hitreje narašča, sa j bi lahko sklepali, da mogoče graf za ženske hitreje narašča. Vendar temu ni tako.
+Izrisal sem še regresijska grafa posebej za ženske in moške.Zanimalo me je kateri graf hitreje narašča, saj bi lahko sklepali, da mogoče graf za ženske hitreje narašča. Vendar temu ni tako.
 
 ***
 

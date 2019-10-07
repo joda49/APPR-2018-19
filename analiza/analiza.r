@@ -15,7 +15,7 @@ graf_regresija <- ggplot(zaposlenost_EU, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'blue') +
   geom_point(data=napoved, aes(x=Leto, y=Procent), color = 'red', size=3) +
   geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2018, 2))
+  scale_x_continuous(breaks = seq(2008, 2022, 2))
 
 
 #Regresija zenske
@@ -34,7 +34,7 @@ graf_regresija_zenske <- ggplot(zaposlenost_zenske, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'red') +
   geom_point(data=napoved1, aes(x=Leto, y=Procent), color = 'red', size=3) +
   geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2018, 2))
+  scale_x_continuous(breaks = seq(2008, 2022, 2))
 
 #Regresija moski
 
@@ -52,7 +52,7 @@ graf_regresija_moski<- ggplot(zaposlenost_moski, aes(x=Leto, y=Procent)) +
   geom_smooth(method=lm, fullrange = TRUE, color = 'green') +
   geom_point(data=napoved, aes(x=Leto, y=Procent), color = 'red', size=3) +
   geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2018, 2))
+  scale_x_continuous(breaks = seq(2008, 2022, 2))
 
 
 
