@@ -93,7 +93,7 @@ Ostale tabele sem sestavil, saj sem jih potreboval za vmesne korake
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-```{r graf_zaposlenost, echo=FALSE, warinng=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi posameznih držav', fig.height=7}
+```{r graf_zaposlenost, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap='Grafi posameznih držav', fig.height=7}
 graf_zaposlenost
 ```
 
